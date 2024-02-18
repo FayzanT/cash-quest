@@ -1,0 +1,44 @@
+<%= form_with(model: finance) do |form| %>
+  <% if finance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(finance.errors.count, "error") %> prohibited this finance from being saved:</h2>
+
+      <ul>
+      <% finance.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :child_id, class: 'form-label' %>
+      <%= form.text_field :child_id, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :balance, class: 'form-label' %>
+      <%= form.number_field :balance, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :expenses, class: 'form-label' %>
+      <%= form.number_field :expenses, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <% if finance.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', finance, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if finance.persisted? %>
+      <%= link_to "Cancel", finance, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", finances_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

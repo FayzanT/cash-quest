@@ -1,0 +1,18 @@
+<div class="page-header">
+  <%= link_to task_lists_path, class: 'btn btn-default' do %>
+    All Task_lists
+  <% end %>
+  <%= link_to edit_task_list_path(@task_list), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show task_list</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Title:</dt>
+  <dd><%= @task_list.title %></dd>
+  <dt>Price:</dt>
+  <dd><%= @task_list.price %></dd>
+  <dt>Completed:</dt>
+  <dd><%= @task_list.completed %></dd>
+</dl>

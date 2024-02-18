@@ -1,0 +1,47 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Task_lists</h1>
+  </div>
+
+  <div class="col-sm-6 text-end">
+  <%= link_to new_task_list_path, class: 'btn btn-primary' do %>
+    Add New Task list
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+
+            <th>Title</th>
+            <th>Price</th>
+            <th>Completed</th>
+            
+          <th></th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @task_lists.each do |task_list| %>
+        <%= content_tag :tr, id: dom_id(task_list), class: dom_class(task_list) do %>
+          
+
+                      <td><%= task_list.title %></td>
+                      <td><%= task_list.price %></td>
+                      <td><%= task_list.completed %></td>
+          
+          
+            <td><%= link_to 'Show', task_list %></td>
+          
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

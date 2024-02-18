@@ -1,0 +1,39 @@
+<%= form_with(model: child) do |form| %>
+  <% if child.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(child.errors.count, "error") %> prohibited this child from being saved:</h2>
+
+      <ul>
+      <% child.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :user_id, class: 'form-label' %>
+      <%= form.text_field :user_id, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :username, class: 'form-label' %>
+      <%= form.text_field :username, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <% if child.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', child, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if child.persisted? %>
+      <%= link_to "Cancel", child, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", children_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

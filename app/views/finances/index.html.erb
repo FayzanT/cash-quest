@@ -1,0 +1,47 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Finances</h1>
+  </div>
+
+  <div class="col-sm-6 text-end">
+  <%= link_to new_finance_path, class: 'btn btn-primary' do %>
+    Add New Finance
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+
+            <th>Child</th>
+            <th>Balance</th>
+            <th>Expenses</th>
+            
+          <th></th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @finances.each do |finance| %>
+        <%= content_tag :tr, id: dom_id(finance), class: dom_class(finance) do %>
+          
+
+                      <td><%= finance.child %></td>
+                      <td><%= finance.balance %></td>
+                      <td><%= finance.expenses %></td>
+          
+          
+            <td><%= link_to 'Show', finance %></td>
+          
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

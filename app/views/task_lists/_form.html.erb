@@ -1,0 +1,44 @@
+<%= form_with(model: task_list) do |form| %>
+  <% if task_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task_list.errors.count, "error") %> prohibited this task_list from being saved:</h2>
+
+      <ul>
+      <% task_list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, class: 'form-label' %>
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :price, class: 'form-label' %>
+      <%= form.number_field :price, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :completed, class: 'form-label' %>
+      <%= form.check_box :completed, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <% if task_list.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', task_list, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if task_list.persisted? %>
+      <%= link_to "Cancel", task_list, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", task_lists_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>
