@@ -1,0 +1,44 @@
+<%= form_with(model: gift) do |form| %>
+  <% if gift.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(gift.errors.count, "error") %> prohibited this gift from being saved:</h2>
+
+      <ul>
+      <% gift.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :child_id, class: 'form-label' %>
+      <%= form.text_field :child_id, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :name, class: 'form-label' %>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :price, class: 'form-label' %>
+      <%= form.number_field :price, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <% if gift.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', gift, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if gift.persisted? %>
+      <%= link_to "Cancel", gift, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", gifts_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

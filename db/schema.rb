@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_18_055904) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_18_093214) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -79,6 +79,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_18_055904) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "gifts", force: :cascade do |t|
+    t.bigint "child_id", null: false
+    t.string "name"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["child_id"], name: "index_gifts_on_child_id"
+  end
+
   create_table "noticed_events", force: :cascade do |t|
     t.string "type"
     t.string "record_type"
@@ -123,6 +132,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_18_055904) do
     t.boolean "completed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "child_id", null: false
+    t.index ["child_id"], name: "index_task_lists_on_child_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -145,5 +156,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_18_055904) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "children", "users"
   add_foreign_key "finances", "children"
+  add_foreign_key "gifts", "children"
   add_foreign_key "services", "users"
+  add_foreign_key "task_lists", "children"
 end

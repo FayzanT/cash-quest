@@ -65,6 +65,10 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+gem "datagrid"
+gem "kaminari"
+
+gem "bootstrap_form"
 gem "psych", "4.0.4"
 gem "cssbundling-rails"
 gem "devise", "~> 4.9"

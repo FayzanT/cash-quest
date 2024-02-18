@@ -1,0 +1,18 @@
+<div class="page-header">
+  <%= link_to gifts_path, class: 'btn btn-default' do %>
+    All Gifts
+  <% end %>
+  <%= link_to edit_gift_path(@gift), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show gift</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Child:</dt>
+  <dd><%= @gift.child %></dd>
+  <dt>Name:</dt>
+  <dd><%= @gift.name %></dd>
+  <dt>Price:</dt>
+  <dd><%= @gift.price %></dd>
+</dl>

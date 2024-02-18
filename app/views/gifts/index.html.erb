@@ -1,0 +1,45 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Gifts</h1>
+  </div>
+
+  <div class="col-sm-6 text-end">
+  <%= link_to new_gift_path, class: 'btn btn-primary' do %>
+    Add New Gift
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+        <th>Name</th>
+    
+
+            <th>Child</th>
+            <th>Price</th>
+            
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @gifts.each do |gift| %>
+        <%= content_tag :tr, id: dom_id(gift), class: dom_class(gift) do %>
+          
+            <td><%= link_to gift.name, gift %></td>
+          
+
+                      <td><%= gift.child.username %></td>
+                      <td><%= number_to_currency(gift.price)%></td>
+          
+          
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
